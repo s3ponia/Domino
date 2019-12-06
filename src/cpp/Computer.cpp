@@ -4,7 +4,7 @@
 
 #include "../headers/Computer.h"
 
-bool Computer::step(Board &) {
+bool Computer::step(Board &board) {
 
 }
 

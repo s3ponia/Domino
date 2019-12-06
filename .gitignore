@@ -1,3 +1,8 @@
+# CLion
+.gitignore.swp
+.idea/
+cmake-build-debug/
+
 # Prerequisites
 *.d
 

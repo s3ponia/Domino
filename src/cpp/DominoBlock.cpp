@@ -4,12 +4,12 @@
 
 #include "../headers/DominoBlock.h"
 
-DominoBlock::DominoBlock(char f, char s) : first_(f), second_(s) { }
+DominoBlock::DominoBlock(char f, char s) : first_(f), second_(s) {}
 
-char DominoBlock::first() {
+char DominoBlock::first() const {
     return first_;
 }
 
-char DominoBlock::second() {
+char DominoBlock::second() const {
     return second_;
 }

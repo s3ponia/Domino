@@ -4,14 +4,12 @@
 
 #include "../headers/Computer.h"
 
-Computer::Computer(Boneyard &boneyard) : boneyard(boneyard) {}
-
-void Computer::step(Board &) {
+bool Computer::step(Board &) {
 
 }
 
-std::pair<bool, DominoBlock> Computer::GetDominoBlock() {
+std::pair<bool, DominoBlock> Computer::GetDominoBlock(Boneyard &boneyard) {
     return boneyard.GetDominoBlock(this);
 }
 
-Computer::Computer(std::vector<DominoBlock> start_hand, Boneyard &boneyard) : hand_(std::move(start_hand)), boneyard(boneyard) {}
+Computer::Computer(std::vector<DominoBlock> start_hand) : hand_(std::move(start_hand)) {}

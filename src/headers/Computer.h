@@ -13,16 +13,13 @@
 
 class Computer : public IPlayer {
 public:
-    explicit Computer(Boneyard &boneyard);
+    Computer(std::vector<DominoBlock> start_hand);
 
-    Computer(std::vector<DominoBlock> start_hand, Boneyard &boneyard);
-
-    void step(Board &) override;
+    bool step(Board &) override;
 
 private:
-    std::pair<bool, DominoBlock> GetDominoBlock();
+    std::pair<bool, DominoBlock> GetDominoBlock(Boneyard &boneyard);
     std::vector<DominoBlock> hand_;
-    Boneyard& boneyard;
 };
 
 

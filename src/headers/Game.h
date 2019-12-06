@@ -7,6 +7,7 @@
 
 #include "IPlayer.h"
 #include "Board.h"
+#include "Boneyard.h"
 #include <vector>
 #include <utility>
 

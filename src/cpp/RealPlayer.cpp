@@ -11,6 +11,6 @@ std::pair<bool, DominoBlock> RealPlayer::GetDominoBlock() {
     return boneyard.GetDominoBlock(this);
 }
 
-void RealPlayer::step(Board &) {
-
+bool RealPlayer::step(Board &) {
+    return true;
 }

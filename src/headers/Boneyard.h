@@ -25,8 +25,7 @@ public:
 
 private:
     std::vector<DominoBlock> heap_;
-    std::map<IPlayer *, std::unordered_set<DominoBlock>> players_hand_;
+    std::map<IPlayer *, std::unordered_set<DominoBlock, HashBoneyard>> players_hand_;
 };
-
 
 #endif //DOMINO_BONEYARD_H

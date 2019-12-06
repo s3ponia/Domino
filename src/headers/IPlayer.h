@@ -8,7 +8,10 @@
 #include "Board.h"
 
 struct IPlayer {
-    virtual void step(Board &) = 0;
+    /**
+     * @return может ли ходить игрок
+     */
+    virtual bool step(Board &) = 0;
 
     virtual ~IPlayer() = default;
 };

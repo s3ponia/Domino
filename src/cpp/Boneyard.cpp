@@ -15,6 +15,6 @@ std::pair<bool, DominoBlock> Boneyard::GetDominoBlock(IPlayer *player) {
 
 Boneyard::Boneyard(std::vector<DominoBlock> vector) : heap_(std::move(vector)) {
     static std::random_device rd;
-    static std::mt19937 g{rd};
+    static std::mt19937 g{rd()};
     std::shuffle(heap_.begin(), heap_.end(), g);
 }

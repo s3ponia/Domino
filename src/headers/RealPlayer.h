@@ -14,7 +14,7 @@ class RealPlayer : public IPlayer {
 public:
     RealPlayer(std::vector<DominoBlock> start_hand, Boneyard &boneyard);
 
-    void step(Board &) override;
+    bool step(Board &) override;
 
 private:
     std::pair<bool, DominoBlock> GetDominoBlock();

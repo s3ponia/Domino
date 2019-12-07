@@ -38,5 +38,6 @@ void Board::PushBack(DominoBlock block) {
     else if (block.first() == back_value)
         board_.push_back(block);
 
-    throw std::logic_error("Illegal block: " + ToString(block) + " opposite to " + ToString(board_.front()));
+    throw std::logic_error(
+            "Illegal block " + ToString(block) + ": " + ToString(board_.back()) + " opposite to " + ToString(block));
 }

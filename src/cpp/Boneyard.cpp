@@ -3,6 +3,7 @@
 //
 
 #include "../headers/Boneyard.h"
+#include <random>
 
 std::pair<bool, DominoBlock> Boneyard::GetDominoBlock(IPlayer *player) {
     if (heap_.empty())
@@ -17,4 +18,8 @@ Boneyard::Boneyard(std::vector<DominoBlock> vector) : heap_(std::move(vector)) {
     static std::random_device rd;
     static std::mt19937 g{rd()};
     std::shuffle(heap_.begin(), heap_.end(), g);
+}
+
+const Boneyard::HandType &Boneyard::GetPlayerHand(IPlayer *player) {
+    return players_hand_.at(player);
 }

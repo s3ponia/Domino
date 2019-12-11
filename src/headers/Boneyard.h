@@ -11,10 +11,11 @@
 #include <unordered_set>
 #include <map>
 #include <utility>
-#include <random>
 
 class Boneyard {
 public:
+    using HandType = std::unordered_set<DominoBlock, HashDominoBlock>;
+
     explicit Boneyard(std::vector<DominoBlock>);
 
     /**
@@ -23,9 +24,11 @@ public:
      */
     std::pair<bool, DominoBlock> GetDominoBlock(IPlayer *);
 
+    HandType const &GetPlayerHand(IPlayer *);
+
 private:
     std::vector<DominoBlock> heap_;
-    std::map<IPlayer *, std::unordered_set<DominoBlock, HashBoneyard>> players_hand_;
+    std::map<IPlayer *, HandType> players_hand_;
 };
 
 #endif //DOMINO_BONEYARD_H

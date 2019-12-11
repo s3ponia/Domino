@@ -5,31 +5,36 @@
 #ifndef DOMINO_DOMINOBLOCK_H
 #define DOMINO_DOMINOBLOCK_H
 
-
 #include <cstddef>
+#include <cstdint>
+#include <string>
 
 class DominoBlock {
 public:
-    DominoBlock(char, char);
+    using ValueType = uint8_t;
 
-    char first() const;
+    DominoBlock(ValueType, ValueType);
 
-    char second() const;
+    DominoBlock() = default;
+
+    ValueType first() const;
+
+    ValueType last() const;
 
 private:
-    friend bool operator==(const DominoBlock &block1, const DominoBlock &block2) {
-        return block1.first_ == block2.first_ && block2.second_ == block1.second_;
-    }
+    friend bool operator==(const DominoBlock &block1, const DominoBlock &block2);
 
-    char first_;
-    char second_;
+    ValueType first_ = -1;
+    ValueType last_ = -1;
 };
 
-struct HashBoneyard {
-    size_t operator()(const DominoBlock &block) const {
-        return ((size_t) block.first() << sizeof(decltype(block.first()))) + block.second();
-    }
+struct HashDominoBlock {
+    size_t operator()(const DominoBlock &block) const;
 };
+
+DominoBlock SwapFields(DominoBlock const &);
+
+std::string ToString(DominoBlock const &);
 
 
 #endif //DOMINO_DOMINOBLOCK_H

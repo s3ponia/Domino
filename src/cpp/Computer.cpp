@@ -5,10 +5,10 @@
 #include "../headers/Computer.h"
 
 bool Computer::step(Board &) {
-
+    return true;
 }
 
-std::pair<bool, DominoBlock> Computer::GetDominoBlock(Boneyard &boneyard) {
+auto Computer::GetDominoBlock(Boneyard &boneyard) {
     return boneyard.GetDominoBlock(this);
 }
 

@@ -15,7 +15,7 @@ DominoBlock Board::back() {
 
 void Board::PushFront(DominoBlock block) {
     if (board_.empty()) {
-        board_.push_front(block);
+        board_.push_back(block);
         return;
     }
     auto front_value = board_.front().first();
@@ -41,3 +41,6 @@ void Board::PushBack(DominoBlock block) {
     throw std::logic_error(
             "Illegal block " + ToString(block) + ": " + ToString(board_.back()) + " opposite to " + ToString(block));
 }
+
+Board::Board(Board &&board) noexcept(std::is_nothrow_move_constructible<std::deque<DominoBlock> >::value) :
+        board_(std::move(board.board_)) {}

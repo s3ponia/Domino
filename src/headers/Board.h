@@ -7,9 +7,14 @@
 
 #include "DominoBlock.h"
 #include <deque>
+#include <type_traits>
 
 class Board {
 public:
+    Board() = default;
+
+    Board(Board &&) noexcept(std::is_nothrow_move_constructible<std::deque<DominoBlock>>::value);
+
     DominoBlock front();
 
     DominoBlock back();

@@ -12,7 +12,7 @@ RealPlayer::RealPlayer(HandType start_hand, Boneyard &boneyard_) : hand_(std::mo
                                                                    boneyard_(boneyard_),
                                                                    step_mode_(StepMode::NONE) {}
 
-std::pair<bool, DominoBlock> RealPlayer::GetDominoBlock() {
+auto RealPlayer::GetDominoBlock() {
     return boneyard_.GetDominoBlock(this);
 }
 
@@ -39,3 +39,5 @@ void RealPlayer::SetStep(const RealPlayer::StepMode &mode, DominoBlock const &bl
     step_mode_ = mode;
     step_block_ = block;
 }
+
+RealPlayer::RealPlayer(Boneyard &boneyard) : boneyard_(boneyard) {}

@@ -18,7 +18,7 @@ public:
     bool step(Board &) override;
 
 private:
-    std::pair<bool, DominoBlock> GetDominoBlock(Boneyard &boneyard);
+    auto GetDominoBlock(Boneyard &boneyard);
     std::vector<DominoBlock> hand_;
 };
 

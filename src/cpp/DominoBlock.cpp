@@ -4,26 +4,26 @@
 
 #include "../headers/DominoBlock.h"
 
-DominoBlock::DominoBlock(ValueType f, ValueType s) : first_(f), last_(s) {}
+DominoBlock::DominoBlock(ValueType f, ValueType s) noexcept : first_(f), last_(s) {}
 
-DominoBlock::ValueType DominoBlock::first() const {
+DominoBlock::ValueType DominoBlock::first() const noexcept {
     return first_;
 }
 
-DominoBlock::ValueType DominoBlock::last() const {
+DominoBlock::ValueType DominoBlock::last() const noexcept {
     return last_;
 }
 
-bool operator==(const DominoBlock &block1, const DominoBlock &block2) {
-    return block1.first_ == block2.first_ && block2.last_ == block1.last_;
+bool operator==(const DominoBlock &block1, const DominoBlock &block2) noexcept {
+    return block1.first() == block2.first() && block2.last() == block1.last();
 }
 
-size_t HashDominoBlock::operator()(const DominoBlock &block) const {
+size_t HashDominoBlock::operator()(const DominoBlock &block) const noexcept {
     return (static_cast<size_t>(block.first()) << sizeof(decltype(block.first()))) |
            static_cast<size_t>(block.last());
 }
 
-DominoBlock SwapFields(DominoBlock const &block) {
+DominoBlock SwapFields(DominoBlock const &block) noexcept {
     return {block.last(), block.first()};
 }
 

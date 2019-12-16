@@ -18,6 +18,8 @@ public:
 
     RealPlayer(HandType start_hand, Boneyard &boneyard_);
 
+    explicit RealPlayer(Boneyard &boneyard);
+
     bool step(Board &) override;
 
     const HandType &hand() const;
@@ -25,7 +27,7 @@ public:
     void SetStep(StepMode const &, DominoBlock const &);
 
 private:
-    std::pair<bool, DominoBlock> GetDominoBlock();
+    auto GetDominoBlock();
 
     HandType hand_;
     Boneyard &boneyard_;

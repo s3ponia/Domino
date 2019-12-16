@@ -22,9 +22,11 @@ public:
      * @return пару, первое значение которой это булево значение означающее закончились ли фишки,
      *  а вторая - сама фишка
      */
-    std::pair<bool, DominoBlock> GetDominoBlock(IPlayer *);
+    DominoBlock GetDominoBlock(IPlayer *player);
 
     HandType const &GetPlayerHand(IPlayer *);
+
+    bool empty() noexcept;
 
 private:
     std::vector<DominoBlock> heap_;

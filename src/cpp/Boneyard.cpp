@@ -5,13 +5,13 @@
 #include "../headers/Boneyard.h"
 #include <random>
 
-std::pair<bool, DominoBlock> Boneyard::GetDominoBlock(IPlayer *player) {
+DominoBlock Boneyard::GetDominoBlock(IPlayer *player) {
     if (heap_.empty())
-        return std::make_pair(false, DominoBlock(0, 0));
+        throw std::runtime_error("Boneyard is empty");
     DominoBlock ret = heap_.back();
     heap_.pop_back();
     players_hand_[player].insert(ret);
-    return std::make_pair(true, ret);
+    return ret;
 }
 
 Boneyard::Boneyard(std::vector<DominoBlock> vector) : heap_(std::move(vector)) {
@@ -22,4 +22,8 @@ Boneyard::Boneyard(std::vector<DominoBlock> vector) : heap_(std::move(vector)) {
 
 const Boneyard::HandType &Boneyard::GetPlayerHand(IPlayer *player) {
     return players_hand_.at(player);
+}
+
+bool Boneyard::empty() noexcept {
+    return heap_.empty();
 }

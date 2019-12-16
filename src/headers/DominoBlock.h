@@ -13,26 +13,26 @@ class DominoBlock {
 public:
     using ValueType = uint8_t;
 
-    DominoBlock(ValueType, ValueType);
+    DominoBlock(ValueType, ValueType) noexcept;
 
     DominoBlock() = default;
 
-    ValueType first() const;
+    ValueType first() const noexcept;
 
-    ValueType last() const;
+    ValueType last() const noexcept;
 
 private:
-    friend bool operator==(const DominoBlock &block1, const DominoBlock &block2);
-
     ValueType first_ = -1;
     ValueType last_ = -1;
 };
 
+bool operator==(const DominoBlock &block1, const DominoBlock &block2) noexcept;
+
 struct HashDominoBlock {
-    size_t operator()(const DominoBlock &block) const;
+    size_t operator()(const DominoBlock &block) const noexcept;
 };
 
-DominoBlock SwapFields(DominoBlock const &);
+DominoBlock SwapFields(DominoBlock const &) noexcept;
 
 std::string ToString(DominoBlock const &);
 

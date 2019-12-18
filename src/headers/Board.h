@@ -15,13 +15,33 @@ public:
 
     Board(Board &&) noexcept(std::is_nothrow_move_constructible<std::deque<DominoBlock>>::value);
 
-    DominoBlock front();
+    Board(Board const &) noexcept(std::is_nothrow_copy_assignable<std::deque<DominoBlock>>::value) = default;
 
-    DominoBlock back();
+    DominoBlock front() const;
 
-    void PushFront(DominoBlock block);
+    DominoBlock back() const;
 
-    void PushBack(DominoBlock);
+    std::deque<DominoBlock>::size_type size() const noexcept;
+
+    std::deque<DominoBlock>::const_iterator begin() const noexcept;
+
+    std::deque<DominoBlock>::const_iterator end() const noexcept;
+
+    std::deque<DominoBlock>::const_iterator cbegin() const noexcept;
+
+    std::deque<DominoBlock>::const_iterator cend() const noexcept;
+
+    /**
+     * @param block
+     * @return true if block pushed and false otherwise
+     */
+    bool PushFront(const DominoBlock &block);
+
+    /**
+     * @param block
+     * @return true if block pushed and false otherwise
+     */
+    bool PushBack(const DominoBlock &);
 
 private:
     std::deque<DominoBlock> board_;

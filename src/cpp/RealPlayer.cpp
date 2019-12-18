@@ -4,20 +4,15 @@
 
 #include "../headers/RealPlayer.h"
 
-enum class RealPlayer::StepMode : uint8_t {
-    NONE, FRONT, BACK
-};
+RealPlayer::RealPlayer(HandType start_hand) : hand_(std::move(start_hand)),
+                                              step_mode_(StepMode::NONE) {}
 
-RealPlayer::RealPlayer(HandType start_hand, Boneyard &boneyard_) : hand_(std::move(start_hand)),
-                                                                   boneyard_(boneyard_),
-                                                                   step_mode_(StepMode::NONE) {}
-
-auto RealPlayer::GetDominoBlock() {
-    return boneyard_.GetDominoBlock(this);
+void RealPlayer::StoreDominoBlock(const DominoBlock &bone) {
+    return hand_.push_back(bone);
 }
 
 bool RealPlayer::step(Board &board) {
-    switch(step_mode_) {
+    switch (step_mode_) {
         case StepMode::FRONT:
             board.PushFront(step_block_);
             break;
@@ -31,7 +26,7 @@ bool RealPlayer::step(Board &board) {
     return true;
 }
 
-const RealPlayer::HandType &RealPlayer::hand() const {
+const RealPlayer::HandType &RealPlayer::hand() const noexcept {
     return hand_;
 }
 
@@ -39,5 +34,3 @@ void RealPlayer::SetStep(const RealPlayer::StepMode &mode, DominoBlock const &bl
     step_mode_ = mode;
     step_block_ = block;
 }
-
-RealPlayer::RealPlayer(Boneyard &boneyard) : boneyard_(boneyard) {}

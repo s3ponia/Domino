@@ -30,10 +30,6 @@ bool Computer::step(Board &board) {
     return false;
 }
 
-auto Computer::GetDominoBlock(Boneyard &boneyard) {
-    return boneyard.GetDominoBlock(this);
-}
-
 Computer::Computer(std::vector<DominoBlock> start_hand) : hand_(std::move(start_hand)) {}
 
 DominoBlock Computer::BestBone(std::vector<DominoBlock> const &bone_vector) {
@@ -45,4 +41,8 @@ DominoBlock Computer::BestBone(std::vector<DominoBlock> const &bone_vector) {
             best_bone = bone;
     }
     return best_bone;
+}
+
+void Computer::StoreDominoBlock(const DominoBlock &bone) {
+    hand_.push_back(bone);
 }

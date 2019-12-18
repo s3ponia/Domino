@@ -5,9 +5,20 @@
 #ifndef DOMINO_UICOMPUTER_H
 #define DOMINO_UICOMPUTER_H
 
+#include "UIPlayer.h"
+#include "Computer.h"
+#include <memory>
 
-class UIComputer {
+class UIComputer : public UIPlayer {
+public:
+    UIComputer(std::unique_ptr<Computer> computer);
 
+    bool Step(Board &) override;
+
+    bool Handle(int, Board const &) override;
+
+private:
+    std::unique_ptr<Computer> computer_;
 };
 
 

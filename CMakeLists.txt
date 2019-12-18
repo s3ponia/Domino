@@ -3,6 +3,9 @@ project(Domino)
 
 set(CMAKE_CXX_STANDARD 14)
 
+find_package(Curses REQUIRED)
+include_directories(${CURSES_INCLUDE_DIR})
+
 add_executable(Domino
         src/main.cpp
         src/cpp/DominoBlock.cpp
@@ -11,4 +14,8 @@ add_executable(Domino
         src/cpp/Boneyard.cpp
         src/cpp/RealPlayer.cpp
         src/cpp/Game.cpp
+        src/cpp/UIRealPlayer.cpp
+        src/cpp/UIComputer.cpp
+        src/cpp/UIModel.cpp
         )
+target_link_libraries(Domino ${CURSES_LIBRARIES})

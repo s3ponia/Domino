@@ -13,25 +13,26 @@
 
 class RealPlayer : public IPlayer {
 public:
-    enum class StepMode : uint8_t;
-    using HandType = std::unordered_set<DominoBlock, HashDominoBlock>;
+    enum class StepMode {
+        NONE, FRONT, BACK
+    };
+    using HandType = std::vector<DominoBlock>;
 
-    RealPlayer(HandType start_hand, Boneyard &boneyard_);
+    explicit RealPlayer(HandType start_hand);
 
-    explicit RealPlayer(Boneyard &boneyard);
+    RealPlayer() = delete;
 
     bool step(Board &) override;
 
-    const HandType &hand() const;
+    const HandType &hand() const noexcept;
 
     void SetStep(StepMode const &, DominoBlock const &);
 
-private:
-    auto GetDominoBlock();
+    void StoreDominoBlock(const DominoBlock &bone) override;
 
+private:
     HandType hand_;
-    Boneyard &boneyard_;
-    StepMode step_mode_;
+    StepMode step_mode_ = StepMode::NONE;
     DominoBlock step_block_;
 };
 

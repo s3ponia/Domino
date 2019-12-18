@@ -13,6 +13,8 @@ struct IPlayer {
      */
     virtual bool step(Board &) = 0;
 
+    virtual void StoreDominoBlock(DominoBlock const &boneyard) = 0;
+
     virtual ~IPlayer() = default;
 };
 

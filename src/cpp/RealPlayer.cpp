@@ -4,12 +4,8 @@
 
 #include "../headers/RealPlayer.h"
 
-RealPlayer::RealPlayer(HandType start_hand) : hand_(std::move(start_hand)),
+RealPlayer::RealPlayer(HandType start_hand) : IPlayer(std::move(start_hand)),
                                               step_mode_(StepMode::NONE) {}
-
-void RealPlayer::StoreDominoBlock(const DominoBlock &bone) {
-    return hand_.push_back(bone);
-}
 
 bool RealPlayer::step(Board &board) {
     switch (step_mode_) {

@@ -28,10 +28,7 @@ public:
 
     void SetStep(StepMode const &, DominoBlock const &);
 
-    void StoreDominoBlock(const DominoBlock &bone) override;
-
 private:
-    HandType hand_;
     StepMode step_mode_ = StepMode::NONE;
     DominoBlock step_block_;
 };

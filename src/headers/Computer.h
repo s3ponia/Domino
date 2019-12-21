@@ -17,11 +17,8 @@ public:
 
     bool step(Board &) override;
 
-    void StoreDominoBlock(const DominoBlock &bone) override;
-
 private:
     static DominoBlock BestBone(std::vector<DominoBlock> const &);
-    std::vector<DominoBlock> hand_;
 };
 
 

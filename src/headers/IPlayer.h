@@ -6,16 +6,23 @@
 #define DOMINO_IPLAYER_H
 
 #include "Board.h"
+#include <vector>
 
-struct IPlayer {
+class IPlayer {
+public:
+    IPlayer(std::vector<DominoBlock> hand);
+
     /**
      * @return может ли ходить игрок
      */
     virtual bool step(Board &) = 0;
 
-    virtual void StoreDominoBlock(DominoBlock const &boneyard) = 0;
+    void StoreDominoBlock(DominoBlock const &bone);
 
     virtual ~IPlayer() = default;
+
+protected:
+    std::vector<DominoBlock> hand_;
 };
 
 

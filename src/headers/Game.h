@@ -6,6 +6,7 @@
 #define DOMINO_GAME_H
 
 #include "IPlayer.h"
+#include "UIPlayer.h"
 #include "Board.h"
 #include "Boneyard.h"
 #include <vector>
@@ -13,12 +14,17 @@
 
 class Game {
 public:
-    Game(Board board, std::vector<IPlayer *> players);
+    Game(Board board, std::vector<IPlayer *> players, Boneyard boneyard);
 
     void step();
+
+    bool run() const noexcept;
+
 private:
     Board board_;
-    std::vector<IPlayer*> players_;
+    std::vector<IPlayer *> players_;
+    Boneyard boneyard_;
+    bool run_ = true;
 };
 
 

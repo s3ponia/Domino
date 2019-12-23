@@ -13,3 +13,9 @@ UIComputer::UIComputer(std::unique_ptr<Computer> computer) : computer_(std::move
 bool UIComputer::Handle(int, Board const &) {
     return true;
 }
+
+IPlayer &UIComputer::player() {
+    return *computer_;
+}
+
+void UIComputer::PrintHand() {}

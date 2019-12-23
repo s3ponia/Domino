@@ -10,7 +10,9 @@
 
 class IPlayer {
 public:
-    IPlayer(std::vector<DominoBlock> hand);
+    explicit IPlayer(std::vector<DominoBlock> hand);
+
+    using HandType = std::vector<DominoBlock>;
 
     /**
      * @return может ли ходить игрок
@@ -19,9 +21,15 @@ public:
 
     void StoreDominoBlock(DominoBlock const &bone);
 
+    const HandType &hand() const noexcept;
+
+    bool IsReady(const Board &board) const noexcept ;
+
     virtual ~IPlayer() = default;
 
 protected:
+    const DominoBlock &RemoveBlock(DominoBlock const &bone);
+
     std::vector<DominoBlock> hand_;
 };
 

@@ -5,6 +5,7 @@
 #include "headers/Board.h"
 #include "headers/UIRealPlayer.h"
 #include "headers/UIModel.h"
+#include "headers/UIComputer.h"
 #include <tuple>
 
 int main() {
@@ -25,6 +26,9 @@ int main() {
     keypad(stdscr, TRUE);
     raw();
     UIModel uiModel(window);
+    UIComputer uiComputer(std::make_unique<Computer>(std::vector<DominoBlock>{{1, 1},
+                                                                              {2, 3},
+                                                                              {3, 4}}));
     UIRealPlayer uiRealPlayer(std::make_unique<RealPlayer>(std::vector<DominoBlock>{{1, 1},
                                                                                     {2, 3},
                                                                                     {3, 4}}), uiModel);
@@ -37,11 +41,13 @@ int main() {
     for (auto const &bone : hand) {
         board.PushBack(bone);
     }
-    do {
-        uiModel.Clear();
-        uiModel.PrintBoard(board);
-        uiRealPlayer.PrintHand();
-    } while (!uiRealPlayer.Handle(uiModel.GetChar(), board));
+
+    Game game(board, {&uiRealPlayer, &uiComputer}, Boneyard({{1, 1},
+                                                             {1, 1},
+                                                             {1, 1}}), uiModel);
+    while (game.run())
+        game.step();
+
     uiModel.PrintBoard(board);
     endwin();
 }

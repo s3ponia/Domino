@@ -5,9 +5,10 @@
 #ifndef DOMINO_GAMEBUILDER_H
 #define DOMINO_GAMEBUILDER_H
 
+#include "Game.h"
 
 class GameBuilder {
-
+    
 };
 
 

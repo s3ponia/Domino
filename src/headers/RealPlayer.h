@@ -16,15 +16,12 @@ public:
     enum class StepMode {
         NONE, FRONT, BACK
     };
-    using HandType = std::vector<DominoBlock>;
 
     explicit RealPlayer(HandType start_hand);
 
     RealPlayer() = delete;
 
     bool step(Board &) override;
-
-    const HandType &hand() const noexcept;
 
     void SetStep(StepMode const &, DominoBlock const &);
 

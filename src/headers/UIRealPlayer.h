@@ -18,7 +18,9 @@ public:
 
     bool Handle(int, Board const &) override;
 
-    void PrintHand();
+    void PrintHand() override;
+
+    IPlayer &player() override;
 
 private:
     void PrepareStep();

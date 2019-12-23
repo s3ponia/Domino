@@ -17,6 +17,10 @@ public:
 
     bool Handle(int, Board const &) override;
 
+    IPlayer &player() override;
+
+    void PrintHand() override;
+
 private:
     std::unique_ptr<Computer> computer_;
 };

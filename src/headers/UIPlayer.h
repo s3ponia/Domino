@@ -6,6 +6,7 @@
 #define DOMINO_UIPLAYER_H
 
 #include "Board.h"
+#include "IPlayer.h"
 
 class UIPlayer {
 public:
@@ -15,6 +16,10 @@ public:
      * @return true if ready and false if not
      */
     virtual bool Handle(int, Board const &) = 0;
+
+    virtual IPlayer &player() = 0;
+
+    virtual void PrintHand() = 0;
 
     virtual ~UIPlayer() = default;
 };

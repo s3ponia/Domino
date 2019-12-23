@@ -9,21 +9,25 @@
 #include "UIPlayer.h"
 #include "Board.h"
 #include "Boneyard.h"
+#include "UIModel.h"
 #include <vector>
 #include <utility>
 
 class Game {
 public:
-    Game(Board board, std::vector<IPlayer *> players, Boneyard boneyard);
+    Game(Board board, std::vector<UIPlayer *> players, Boneyard boneyard, UIModel const &model);
 
     void step();
 
     bool run() const noexcept;
 
 private:
+    void PreparePlayer(UIPlayer *);
+
     Board board_;
-    std::vector<IPlayer *> players_;
+    std::vector<UIPlayer *> players_;
     Boneyard boneyard_;
+    UIModel model_;
     bool run_ = true;
 };
 

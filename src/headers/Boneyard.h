@@ -26,7 +26,7 @@ public:
 
     HandType const &GetPlayerHand(IPlayer *);
 
-    bool empty() noexcept;
+    bool empty() const noexcept;
 
 private:
     std::vector<DominoBlock> heap_;

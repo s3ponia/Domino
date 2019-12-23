@@ -40,6 +40,6 @@ DominoBlock Computer::BestBone(std::vector<DominoBlock> const &bone_vector) {
         if (best_bone.first() + best_bone.last() > bone.last() + bone.first())
             best_bone = bone;
     }
-    return best_bone;
+    return RemoveBlock(best_bone);
 }
 

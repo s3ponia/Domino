@@ -6,7 +6,8 @@
 #include <ncurses.h>
 
 bool UIRealPlayer::Step(Board &board) {
-    return player_->step(board);
+    player_->step(board);
+    return true;
 }
 
 bool UIRealPlayer::Handle(int input, Board const &board) {
@@ -44,3 +45,6 @@ void UIRealPlayer::PrintHand() {
     model_.PrintHand(player_->hand(), chosen_bone_);
 }
 
+IPlayer &UIRealPlayer::player() {
+    return *player_;
+}

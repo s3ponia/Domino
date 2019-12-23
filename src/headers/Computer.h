@@ -18,7 +18,7 @@ public:
     bool step(Board &) override;
 
 private:
-    static DominoBlock BestBone(std::vector<DominoBlock> const &);
+    DominoBlock BestBone(std::vector<DominoBlock> const &);
 };
 
 

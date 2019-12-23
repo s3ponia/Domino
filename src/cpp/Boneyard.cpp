@@ -24,6 +24,6 @@ const Boneyard::HandType &Boneyard::GetPlayerHand(IPlayer *player) {
     return players_hand_.at(player);
 }
 
-bool Boneyard::empty() noexcept {
+bool Boneyard::empty() const noexcept {
     return heap_.empty();
 }

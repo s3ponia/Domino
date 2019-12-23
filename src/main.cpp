@@ -26,12 +26,6 @@ int main() {
     keypad(stdscr, TRUE);
     raw();
     UIModel uiModel(window);
-    UIComputer uiComputer(std::make_unique<Computer>(std::vector<DominoBlock>{{1, 1},
-                                                                              {2, 3},
-                                                                              {3, 4}}));
-    UIRealPlayer uiRealPlayer(std::make_unique<RealPlayer>(std::vector<DominoBlock>{{1, 1},
-                                                                                    {2, 3},
-                                                                                    {3, 4}}), uiModel);
     std::vector<DominoBlock> hand = {
             {1, 2},
             {2, 3},
@@ -42,9 +36,16 @@ int main() {
         board.PushBack(bone);
     }
 
-    Game game(board, {&uiRealPlayer, &uiComputer}, Boneyard({{1, 1},
-                                                             {1, 1},
-                                                             {1, 1}}), uiModel);
+    Game game(board, {std::make_shared<UIRealPlayer>(std::make_unique<RealPlayer>(std::vector<DominoBlock>{{1, 1},
+                                                                                                           {2, 3},
+                                                                                                           {3, 4}}),
+                                                     uiModel),
+                      std::make_shared<UIComputer>(std::make_unique<Computer>(std::vector<DominoBlock>{{1, 1},
+                                                                                                       {2, 3},
+                                                                                                       {3, 4}}))},
+              Boneyard({{1, 1},
+                        {1, 1},
+                        {1, 1}}), uiModel);
     while (game.run())
         game.step();
 

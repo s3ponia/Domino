@@ -25,6 +25,11 @@ size_t HashDominoBlock::operator()(const DominoBlock &block) const noexcept {
            static_cast<size_t>(block.last());
 }
 
+size_t std::hash<DominoBlock>::operator()(const DominoBlock &block) const noexcept {
+    return (static_cast<size_t>(block.first()) << sizeof(decltype(block.first()))) |
+           static_cast<size_t>(block.last());
+}
+
 DominoBlock SwapFields(DominoBlock const &block) noexcept {
     return {block.last(), block.first()};
 }

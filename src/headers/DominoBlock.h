@@ -34,6 +34,13 @@ struct HashDominoBlock {
     size_t operator()(const DominoBlock &block) const noexcept;
 };
 
+namespace std{
+    template<>
+    struct hash<DominoBlock> {
+        size_t operator()(const DominoBlock &block) const noexcept;
+    };
+}
+
 DominoBlock SwapFields(DominoBlock const &) noexcept;
 
 std::string ToString(DominoBlock const &);

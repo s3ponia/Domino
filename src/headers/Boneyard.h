@@ -28,6 +28,8 @@ public:
 
     bool empty() const noexcept;
 
+    std::vector<DominoBlock>::size_type size() const noexcept;
+
 private:
     std::vector<DominoBlock> heap_;
     std::map<IPlayer *, HandType> players_hand_;

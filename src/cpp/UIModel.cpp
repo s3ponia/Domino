@@ -109,11 +109,9 @@ void UIModel::PrintHand(std::vector<DominoBlock> const &hand, int chosen, int co
     for (decltype(hand.size()) i = 0; i < hand.size(); ++i, coor_x += 4) {
         wmove(window_, coor_y, coor_x);
         if (i == chosen) {
-//            wattron(window_, COLOR_PAIR(CHOSEN_COLOR_PAIR));
-            wattron(window_, A_BLINK);
+            wattron(window_, COLOR_PAIR(CHOSEN_COLOR_PAIR));
             PrintVerticalBone(hand.at(i));
-            wattroff(window_, A_BLINK);
-//            wattroff(window_, COLOR_PAIR(CHOSEN_COLOR_PAIR));
+            wattroff(window_, COLOR_PAIR(CHOSEN_COLOR_PAIR));
         } else {
             PrintVerticalBone(hand.at(i));
         }
@@ -132,4 +130,16 @@ void UIModel::PrintBoard(Board const &board, int coor_y, int coor_x) {
             coor_x += 6;
         }
     }
+}
+
+void UIModel::Print(int y, int x, std::string const &string) {
+    mvwprintw(window_, y, x, string.c_str());
+}
+
+void UIModel::AttrOn(int attr) {
+    wattron(window_, attr);
+}
+
+void UIModel::AttrOff(int attr) {
+    wattroff(window_, attr);
 }

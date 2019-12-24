@@ -36,17 +36,10 @@ bool Game::run() const noexcept {
 void Game::PreparePlayer(const std::shared_ptr<UIPlayer> &player) {
     do {
         model_.Clear();
+        PrintInfo(*player);
         model_.PrintBoard(board_);
         player->PrintHand();
     } while (!player->Handle(model_.GetChar(), board_));
-}
-
-Boneyard &Game::boneyard() noexcept {
-    return boneyard_;
-}
-
-UIModel &Game::model() noexcept {
-    return model_;
 }
 
 bool Game::CheckDominoBlocks() {
@@ -64,4 +57,16 @@ bool Game::CheckDominoBlocks() {
             return false;
     }
     return true;
+}
+
+void Game::PrintInfo(UIPlayer const &player) {
+    model_.Print(0, 0, "Boneyard: " + std::to_string(boneyard_.size()));
+    for (int i = 0; i < players_.size(); ++i) {
+        auto const &p = *players_.at(i);
+        if (&player == &p)
+            model_.AttrOn(COLOR_PAIR(CHOSEN_COLOR_PAIR));
+        model_.Print(i + 1, 0,
+                     "Player " + std::to_string(i) + ":" + std::to_string(players_.at(i)->player().hand().size()));
+        model_.AttrOff(COLOR_PAIR(CHOSEN_COLOR_PAIR));
+    }
 }

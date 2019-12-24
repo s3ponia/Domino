@@ -5,6 +5,7 @@
 #ifndef DOMINO_UIPLAYER_H
 #define DOMINO_UIPLAYER_H
 
+#include <set>
 #include "Board.h"
 #include "IPlayer.h"
 

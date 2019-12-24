@@ -21,11 +21,9 @@ public:
 
     bool run() const noexcept;
 
-    Boneyard &boneyard() noexcept;
-
-    UIModel &model() noexcept;
-
 private:
+    void PrintInfo(UIPlayer const &player);
+
     bool CheckDominoBlocks();
 
     void PreparePlayer(const std::shared_ptr<UIPlayer> &);

@@ -32,6 +32,12 @@ public:
      */
     RealPlayer::StepMode RealPlayerChooseInterface(Board const &board, DominoBlock const &bone);
 
+    void Print(int y, int x, std::string const &string);
+
+    void AttrOn(int attr);
+
+    void AttrOff(int attr);
+
 private:
     void PrintRealPlayerChooseInterface(Board board, DominoBlock const &bone, bool front_side);
 

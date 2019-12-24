@@ -1,8 +1,11 @@
 #include "headers/UIModel.h"
 #include "headers/GameBuilder.h"
 #include <tuple>
+#include <chrono>
+#include <thread>
 
 int main() {
+    using namespace std::chrono_literals;
     auto window = initscr();
     if (!has_colors()) {
         wprintw(window, "Terminal doesn't support colors.");
@@ -19,7 +22,9 @@ int main() {
     keypad(stdscr, TRUE);
     UIModel ui_model(window);
     auto game = GameBuilder::Build(ui_model);
-    while (game.run())
+    while (game.run()) {
         game.step();
+        std::this_thread::sleep_for(100ms);
+    }
     endwin();
 }

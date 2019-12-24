@@ -26,3 +26,7 @@ const Boneyard::HandType &Boneyard::GetPlayerHand(IPlayer *player) {
 bool Boneyard::empty() const noexcept {
     return heap_.empty();
 }
+
+std::vector<DominoBlock>::size_type Boneyard::size() const noexcept {
+    return heap_.size();
+}

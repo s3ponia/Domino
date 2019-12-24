@@ -6,12 +6,13 @@
 #define DOMINO_GAME_H
 
 #include "IPlayer.h"
-#include "UIPlayer.h"
 #include "Board.h"
 #include "Boneyard.h"
 #include "UIModel.h"
 #include <vector>
 #include <utility>
+
+class UIPlayer;
 
 class Game {
 public:

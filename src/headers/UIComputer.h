@@ -7,7 +7,6 @@
 
 #include "UIPlayer.h"
 #include "Computer.h"
-#include <memory>
 
 class UIComputer : public UIPlayer {
 public:

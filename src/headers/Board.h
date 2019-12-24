@@ -5,9 +5,8 @@
 #ifndef DOMINO_BOARD_H
 #define DOMINO_BOARD_H
 
-#include "DominoBlock.h"
 #include <deque>
-#include <type_traits>
+#include "DominoBlock.h"
 
 class Board {
 public:

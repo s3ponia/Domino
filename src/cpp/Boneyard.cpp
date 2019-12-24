@@ -19,10 +19,6 @@ Boneyard::Boneyard(std::vector<DominoBlock> vector) : heap_(std::move(vector)) {
     std::shuffle(heap_.begin(), heap_.end(), g);
 }
 
-const Boneyard::HandType &Boneyard::GetPlayerHand(IPlayer *player) {
-    return players_hand_.at(player);
-}
-
 bool Boneyard::empty() const noexcept {
     return heap_.empty();
 }

@@ -5,7 +5,6 @@
 #ifndef DOMINO_UIMODEL_H
 #define DOMINO_UIMODEL_H
 
-#include <vector>
 #include "DominoBlock.h"
 #include "RealPlayer.h"
 #include "Board.h"

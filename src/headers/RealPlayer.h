@@ -6,10 +6,7 @@
 #define DOMINO_REALPLAYER_H
 
 #include "IPlayer.h"
-#include "Boneyard.h"
-#include <set>
-#include <unordered_set>
-#include <utility>
+#include "DominoBlock.h"
 
 class RealPlayer : public IPlayer {
 public:

@@ -3,7 +3,8 @@
 //
 
 #include "../headers/IPlayer.h"
-
+#include "../headers/DominoBlock.h"
+#include "../headers/Board.h"
 #include <utility>
 
 IPlayer::IPlayer(std::vector<DominoBlock> hand) : hand_(std::move(hand)) {}

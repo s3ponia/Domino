@@ -3,6 +3,7 @@
 //
 
 #include "../headers/RealPlayer.h"
+#include "../headers/Board.h"
 
 RealPlayer::RealPlayer(HandType start_hand) : IPlayer(std::move(start_hand)),
                                               step_mode_(StepMode::NONE) {}

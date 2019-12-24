@@ -5,8 +5,10 @@
 #ifndef DOMINO_IPLAYER_H
 #define DOMINO_IPLAYER_H
 
-#include "Board.h"
 #include <vector>
+
+class Board;
+class DominoBlock;
 
 class IPlayer {
 public:

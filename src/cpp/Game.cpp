@@ -3,6 +3,7 @@
 //
 
 #include "../headers/Game.h"
+#include "../headers/UIPlayer.h"
 
 void Game::step() {
     bool step = false;

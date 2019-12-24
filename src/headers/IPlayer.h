@@ -10,7 +10,7 @@
 
 class IPlayer {
 public:
-    explicit IPlayer(std::vector<DominoBlock> hand);
+    explicit IPlayer(std::vector<DominoBlock> hand = {});
 
     using HandType = std::vector<DominoBlock>;
 
@@ -23,7 +23,7 @@ public:
 
     const HandType &hand() const noexcept;
 
-    bool IsReady(const Board &board) const noexcept ;
+    bool IsReady(const Board &board) const noexcept;
 
     virtual ~IPlayer() = default;
 

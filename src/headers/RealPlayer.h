@@ -19,7 +19,7 @@ public:
 
     explicit RealPlayer(HandType start_hand);
 
-    RealPlayer() = delete;
+    RealPlayer() = default;
 
     bool step(Board &) override;
 

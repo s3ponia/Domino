@@ -69,3 +69,7 @@ std::deque<DominoBlock>::const_iterator Board::end() const noexcept {
 std::deque<DominoBlock>::size_type Board::size() const noexcept {
     return board_.size();
 }
+
+bool Board::empty() const noexcept {
+    return board_.empty();
+}

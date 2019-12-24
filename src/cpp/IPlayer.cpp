@@ -22,6 +22,8 @@ const DominoBlock &IPlayer::RemoveBlock(DominoBlock const &bone) {
 }
 
 bool IPlayer::IsReady(const Board &board) const noexcept {
+    if (board.empty())
+        return true;
     auto start = board.front().first();
     auto end = board.back().last();
     for (auto bone: hand_) {

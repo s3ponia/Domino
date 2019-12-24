@@ -15,11 +15,15 @@
 
 class Game {
 public:
-    Game(Board board, std::vector<std::shared_ptr<UIPlayer>> players, Boneyard boneyard, UIModel const &model);
+    Game(std::vector<std::shared_ptr<UIPlayer>> players, Boneyard boneyard, UIModel const &model);
 
     void step();
 
     bool run() const noexcept;
+
+    Boneyard &boneyard() noexcept;
+
+    UIModel &model() noexcept;
 
 private:
     void PreparePlayer(const std::shared_ptr<UIPlayer> &);

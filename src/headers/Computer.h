@@ -15,6 +15,8 @@ class Computer : public IPlayer {
 public:
     explicit Computer(std::vector<DominoBlock> start_hand);
 
+    Computer() = default;
+
     bool step(Board &) override;
 
 private:

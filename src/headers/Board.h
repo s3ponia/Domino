@@ -31,6 +31,8 @@ public:
 
     std::deque<DominoBlock>::const_iterator cend() const noexcept;
 
+    bool empty() const noexcept;
+
     /**
      * @param block
      * @return true if block pushed and false otherwise

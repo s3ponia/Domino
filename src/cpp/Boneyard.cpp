@@ -5,12 +5,11 @@
 #include "../headers/Boneyard.h"
 #include <random>
 
-DominoBlock Boneyard::GetDominoBlock(IPlayer *player) {
+DominoBlock Boneyard::GetDominoBlock() {
     if (heap_.empty())
         throw std::runtime_error("Boneyard is empty");
     DominoBlock ret = heap_.back();
     heap_.pop_back();
-    players_hand_[player].insert(ret);
     return ret;
 }
 

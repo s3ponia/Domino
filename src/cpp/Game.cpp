@@ -8,8 +8,8 @@ void Game::step() {
     bool step = false;
     for (auto const &player: players_) {
         bool ready;
-        while (!boneyard_.empty() && !(ready = player->player().IsReady(board_))) {
-            player->player().StoreDominoBlock(boneyard_.GetDominoBlock(&player->player()));
+        while (!(ready = player->player().IsReady(board_)) && !boneyard_.empty()) {
+            player->player().StoreDominoBlock(boneyard_.GetDominoBlock());
         }
         if (ready) {
             PreparePlayer(player);
@@ -18,14 +18,14 @@ void Game::step() {
         }
         if (player->player().hand().empty()) {
             run_ = false;
-            break;
+            return;
         }
     }
     run_ = step;
 }
 
-Game::Game(Board board, std::vector<std::shared_ptr<UIPlayer>> players, Boneyard boneyard, UIModel const &model)
-        : board_(std::move(board)), players_(std::move(players)), boneyard_(std::move(boneyard)), model_(model) {}
+Game::Game(std::vector<std::shared_ptr<UIPlayer>> players, Boneyard boneyard, UIModel const &model)
+        : players_(std::move(players)), boneyard_(std::move(boneyard)), model_(model) {}
 
 bool Game::run() const noexcept {
     return run_;
@@ -37,4 +37,12 @@ void Game::PreparePlayer(const std::shared_ptr<UIPlayer> &player) {
         model_.PrintBoard(board_);
         player->PrintHand();
     } while (!player->Handle(model_.GetChar(), board_));
+}
+
+Boneyard &Game::boneyard() noexcept {
+    return boneyard_;
+}
+
+UIModel &Game::model() noexcept {
+    return model_;
 }

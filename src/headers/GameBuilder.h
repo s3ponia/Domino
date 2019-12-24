@@ -8,7 +8,8 @@
 #include "Game.h"
 
 class GameBuilder {
-    
+public:
+    static Game Build(WINDOW *window);
 };
 
 

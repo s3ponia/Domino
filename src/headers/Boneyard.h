@@ -22,7 +22,7 @@ public:
      * @return пару, первое значение которой это булево значение означающее закончились ли фишки,
      *  а вторая - сама фишка
      */
-    DominoBlock GetDominoBlock(IPlayer *player);
+    DominoBlock GetDominoBlock();
 
     HandType const &GetPlayerHand(IPlayer *);
 

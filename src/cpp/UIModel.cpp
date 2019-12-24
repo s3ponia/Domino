@@ -4,12 +4,13 @@
 
 #include "../headers/UIModel.h"
 
-void UIModel::PrintHand(std::vector<DominoBlock> const &hand, int chosen) {
+void UIModel::PrintHand(IPlayer::HandType const &hand, int chosen) {
     decltype(hand.size()) width, height;
     getmaxyx(window_, height, width);
-    auto hand_coor_x = width / 2ul - hand.size() * 3ul;
+    auto hand_coor_x = width / 2ul - hand.size() * 3;
     auto hand_coor_y = height - 6;
     PrintHand(hand, chosen, hand_coor_y, hand_coor_x);
+//    wrefresh(window_);
 }
 
 void UIModel::PrintVerticalBone(DominoBlock const &bone) {
@@ -52,6 +53,9 @@ chtype UIModel::GetChar() noexcept {
 }
 
 RealPlayer::StepMode UIModel::RealPlayerChooseInterface(Board const &board, DominoBlock const &bone) {
+    if (board.empty()) {
+        return RealPlayer::StepMode::FRONT;
+    }
     bool run = true;
     bool front_side = true;
     auto front = board.front().first();
@@ -106,9 +110,11 @@ void UIModel::PrintHand(std::vector<DominoBlock> const &hand, int chosen, int co
     for (decltype(hand.size()) i = 0; i < hand.size(); ++i, coor_x += 4) {
         wmove(window_, coor_y, coor_x);
         if (i == chosen) {
-            wattron(window_, COLOR_PAIR(CHOSEN_COLOR_PAIR));
+//            wattron(window_, COLOR_PAIR(CHOSEN_COLOR_PAIR));
+            wattron(window_, A_BLINK);
             PrintVerticalBone(hand.at(i));
-            wattroff(window_, COLOR_PAIR(CHOSEN_COLOR_PAIR));
+            wattroff(window_, A_BLINK);
+//            wattroff(window_, COLOR_PAIR(CHOSEN_COLOR_PAIR));
         } else {
             PrintVerticalBone(hand.at(i));
         }

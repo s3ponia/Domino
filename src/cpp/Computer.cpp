@@ -5,6 +5,11 @@
 #include "../headers/Computer.h"
 
 bool Computer::step(Board &board) {
+    if (board.empty()) {
+        board.PushBack(BestBone(hand_));
+        return true;
+    }
+
     auto start = board.front().first();
     auto end = board.back().last();
     using ii = decltype(std::declval<DominoBlock>().first());

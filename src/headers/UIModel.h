@@ -17,7 +17,7 @@ class UIModel {
 public:
     explicit UIModel(WINDOW *window);
 
-    void PrintHand(std::vector<DominoBlock> const &hand, int chosen);
+    void PrintHand(IPlayer::HandType const &hand, int chosen);
 
     void PrintBoard(Board const &board);
 

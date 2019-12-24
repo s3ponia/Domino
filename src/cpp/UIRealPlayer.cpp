@@ -36,6 +36,8 @@ bool UIRealPlayer::Handle(int input, Board const &board) {
 
 void UIRealPlayer::PrepareStep() {
     player_->SetStep(mode_, player_->hand().at(chosen_bone_));
+    if (chosen_bone_ > 0 && chosen_bone_ >= player_->hand().size() - 1)
+        --chosen_bone_;
 }
 
 UIRealPlayer::UIRealPlayer(std::unique_ptr<RealPlayer> player, UIModel &model) : player_(std::move(player)),

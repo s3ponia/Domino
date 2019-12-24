@@ -16,8 +16,8 @@ const IPlayer::HandType &IPlayer::hand() const noexcept {
     return hand_;
 }
 
-const DominoBlock &IPlayer::RemoveBlock(DominoBlock const &bone) {
-    hand_.erase(std::find(hand_.cbegin(), hand_.cend(), bone));
+DominoBlock IPlayer::RemoveBlock(DominoBlock bone) {
+    hand_.erase(std::remove(hand_.begin(), hand_.end(), bone), hand_.end());
     return bone;
 }
 

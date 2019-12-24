@@ -6,7 +6,10 @@
 
 bool Computer::step(Board &board) {
     if (board.empty()) {
-        board.PushBack(BestBone(hand_));
+        auto bone = BestBone(hand_);
+        assert(std::find(hand_.begin(), hand_.end(), bone) != hand_.end());
+        board.PushBack(RemoveBlock(bone));
+        assert(std::find(hand_.begin(), hand_.end(), bone) == hand_.end());
         return true;
     }
 
@@ -25,10 +28,16 @@ bool Computer::step(Board &board) {
     }
 
     if (start_can.size() > end_can.size()) {
-        board.PushFront(BestBone(start_can));
+        auto bone = BestBone(start_can);
+        assert(std::find(hand_.begin(), hand_.end(), bone) != hand_.end());
+        board.PushFront(RemoveBlock(bone));
+        assert(std::find(hand_.begin(), hand_.end(), bone) == hand_.end());
         return true;
     } else if (!end_can.empty()) {
-        board.PushBack(BestBone(end_can));
+        auto bone = BestBone(end_can);
+        assert(std::find(hand_.begin(), hand_.end(), bone) != hand_.end());
+        board.PushBack(RemoveBlock(bone));
+        assert(std::find(hand_.begin(), hand_.end(), bone) == hand_.end());
         return true;
     }
 
@@ -38,13 +47,14 @@ bool Computer::step(Board &board) {
 Computer::Computer(std::vector<DominoBlock> start_hand) : IPlayer(std::move(start_hand)) {}
 
 DominoBlock Computer::BestBone(std::vector<DominoBlock> const &bone_vector) {
-    DominoBlock best_bone(-1, -1);
+    assert(!bone_vector.empty());
+    DominoBlock best_bone = bone_vector.at(0);
     for (auto bone:bone_vector) {
         if (bone.last() == bone.first())
             return bone;
-        if (best_bone.first() + best_bone.last() > bone.last() + bone.first())
+        if (best_bone.first() + best_bone.last() < bone.last() + bone.first())
             best_bone = bone;
     }
-    return RemoveBlock(best_bone);
+    return best_bone;
 }
 

@@ -14,6 +14,8 @@ DominoBlock::ValueType DominoBlock::last() const noexcept {
     return last_;
 }
 
+DominoBlock &DominoBlock::operator=(DominoBlock const &rhs) = default;
+
 bool operator==(const DominoBlock &block1, const DominoBlock &block2) noexcept {
     return block1.first() == block2.first() && block2.last() == block1.last();
 }

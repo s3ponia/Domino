@@ -7,6 +7,8 @@
 void Game::step() {
     bool step = false;
     for (auto const &player: players_) {
+        if (!CheckDominoBlocks())
+            throw std::logic_error("Duplicate DominoBlocks");
         bool ready;
         while (!(ready = player->player().IsReady(board_)) && !boneyard_.empty()) {
             player->player().StoreDominoBlock(boneyard_.GetDominoBlock());
@@ -45,4 +47,21 @@ Boneyard &Game::boneyard() noexcept {
 
 UIModel &Game::model() noexcept {
     return model_;
+}
+
+bool Game::CheckDominoBlocks() {
+    std::unordered_set<DominoBlock, HashDominoBlock> set;
+    for (auto const &player:players_) {
+        for (auto const &bone:player->player().hand()) {
+            auto const &[it, ret] = set.insert(bone);
+            if (!ret)
+                return false;
+        }
+    }
+    for (auto const &bone:board_) {
+        auto const &[it, ret] = set.insert(bone);
+        if (!ret)
+            return false;
+    }
+    return true;
 }

@@ -26,6 +26,8 @@ public:
     UIModel &model() noexcept;
 
 private:
+    bool CheckDominoBlocks();
+
     void PreparePlayer(const std::shared_ptr<UIPlayer> &);
 
     Board board_;

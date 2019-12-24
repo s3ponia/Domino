@@ -9,7 +9,7 @@
 
 class GameBuilder {
 public:
-    static Game Build(WINDOW *window);
+    static Game Build(UIModel &ui_model);
 };
 
 

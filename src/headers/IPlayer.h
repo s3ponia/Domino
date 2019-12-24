@@ -28,7 +28,7 @@ public:
     virtual ~IPlayer() = default;
 
 protected:
-    const DominoBlock &RemoveBlock(DominoBlock const &bone);
+    DominoBlock RemoveBlock(DominoBlock bone);
 
     std::vector<DominoBlock> hand_;
 };

@@ -21,6 +21,8 @@ public:
 
     ValueType last() const noexcept;
 
+    DominoBlock &operator=(DominoBlock const &rhs);
+
 private:
     ValueType first_ = -1;
     ValueType last_ = -1;

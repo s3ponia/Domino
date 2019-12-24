@@ -10,7 +10,6 @@ void UIModel::PrintHand(IPlayer::HandType const &hand, int chosen) {
     auto hand_coor_x = width / 2ul - hand.size() * 3;
     auto hand_coor_y = height - 6;
     PrintHand(hand, chosen, hand_coor_y, hand_coor_x);
-//    wrefresh(window_);
 }
 
 void UIModel::PrintVerticalBone(DominoBlock const &bone) {

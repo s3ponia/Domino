@@ -7,9 +7,7 @@
 #include "../headers/UIComputer.h"
 #include <ncurses.h>
 
-Game GameBuilder::Build(WINDOW *window) {
-    UIModel ui_model(window);
-
+Game GameBuilder::Build(UIModel &ui_model) {
     Boneyard boneyard({{0, 0},
                        {0, 1},
                        {0, 2},
@@ -76,5 +74,5 @@ Game GameBuilder::Build(WINDOW *window) {
                                       : std::vector<std::shared_ptr<UIPlayer>>{ui_computer,
                                                                                ui_real_player});
 
-    return Game(std::move(players), std::move(boneyard), UIModel(window));
+    return Game(std::move(players), std::move(boneyard), ui_model);
 }

@@ -99,7 +99,7 @@ void Game::GameOver() {
     for (decltype(scores.size()) i = 1; i < scores.size(); ++i) {
         auto temp = scores.at(i);
         model_.Print(h++, w, "Score " +
-                             GetName(players_.at(i)) + " " + std::to_string(temp.first));
+                             GetName(players_.at(temp.second)) + " " + std::to_string(temp.first));
     }
 }
 

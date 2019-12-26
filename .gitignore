@@ -5,6 +5,7 @@ cmake-build-debug/
 
 #doxygen
 doxygen.conf
+documentation
 
 # MacOS
 .DS_Store

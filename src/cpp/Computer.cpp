@@ -4,13 +4,13 @@
 
 #include "../headers/Computer.h"
 
-bool Computer::step(Board &board) {
+void Computer::step(Board &board) {
     if (board.empty()) {
         auto bone = BestBone(hand_);
         assert(std::find(hand_.begin(), hand_.end(), bone) != hand_.end());
         board.PushBack(RemoveBlock(bone));
         assert(std::find(hand_.begin(), hand_.end(), bone) == hand_.end());
-        return true;
+        return;
     }
 
     auto start = board.front().first();
@@ -32,19 +32,15 @@ bool Computer::step(Board &board) {
         assert(std::find(hand_.begin(), hand_.end(), bone) != hand_.end());
         board.PushFront(RemoveBlock(bone));
         assert(std::find(hand_.begin(), hand_.end(), bone) == hand_.end());
-        return true;
     } else if (!end_can.empty()) {
         auto bone = BestBone(end_can);
         assert(std::find(hand_.begin(), hand_.end(), bone) != hand_.end());
         board.PushBack(RemoveBlock(bone));
         assert(std::find(hand_.begin(), hand_.end(), bone) == hand_.end());
-        return true;
     }
-
-    return false;
 }
 
-Computer::Computer(std::vector<DominoBlock> start_hand) : IPlayer(std::move(start_hand)) {}
+Computer::Computer(std::vector<DominoBlock> start_hand) : Player(std::move(start_hand)) {}
 
 DominoBlock Computer::BestBone(std::vector<DominoBlock> const &bone_vector) {
     assert(!bone_vector.empty());

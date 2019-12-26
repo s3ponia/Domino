@@ -14,13 +14,13 @@ class UIRealPlayer : public UIPlayer {
 public:
     UIRealPlayer(std::unique_ptr<RealPlayer> player, UIModel &model);
 
-    bool Step(Board &) override;
+    void Step(Board &board) override;
 
     bool Handle(int, Board const &) override;
 
     void PrintHand() override;
 
-    IPlayer &player() override;
+    Player &player() override;
 
 private:
     void PrepareStep();

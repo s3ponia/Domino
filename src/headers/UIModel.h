@@ -16,7 +16,7 @@ class UIModel {
 public:
     explicit UIModel(WINDOW *window);
 
-    void PrintHand(IPlayer::HandType const &hand, int chosen);
+    void PrintHand(Player::HandType const &hand, int chosen);
 
     void PrintBoard(Board const &board);
 
@@ -32,6 +32,8 @@ public:
     RealPlayer::StepMode RealPlayerChooseInterface(Board const &board, DominoBlock const &bone);
 
     void Print(int y, int x, std::string const &string);
+
+    void GetMaxYX(int &y, int &x) noexcept;
 
     void AttrOn(int attr);
 

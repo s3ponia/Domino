@@ -5,10 +5,10 @@
 #include "../headers/RealPlayer.h"
 #include "../headers/Board.h"
 
-RealPlayer::RealPlayer(HandType start_hand) : IPlayer(std::move(start_hand)),
+RealPlayer::RealPlayer(HandType start_hand) : Player(std::move(start_hand)),
                                               step_mode_(StepMode::NONE) {}
 
-bool RealPlayer::step(Board &board) {
+void RealPlayer::step(Board &board) {
     switch (step_mode_) {
         case StepMode::FRONT:
             board.PushFront(RemoveBlock(step_block_));
@@ -19,8 +19,6 @@ bool RealPlayer::step(Board &board) {
         case StepMode::NONE:
             throw std::logic_error("Illegal state of step_mode_ in RealPlayer");
     }
-
-    return true;
 }
 
 void RealPlayer::SetStep(const RealPlayer::StepMode &mode, DominoBlock const &block) {

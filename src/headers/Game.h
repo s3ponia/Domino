@@ -5,7 +5,7 @@
 #ifndef DOMINO_GAME_H
 #define DOMINO_GAME_H
 
-#include "IPlayer.h"
+#include "Player.h"
 #include "Board.h"
 #include "Boneyard.h"
 #include "UIModel.h"
@@ -22,8 +22,12 @@ public:
 
     bool run() const noexcept;
 
+    void GameOver();
+
 private:
     void PrintInfo(UIPlayer const &player);
+
+    static int GetScore(std::shared_ptr<UIPlayer> const &player);
 
     bool CheckDominoBlocks();
 

@@ -12,11 +12,11 @@ class UIComputer : public UIPlayer {
 public:
     UIComputer(std::unique_ptr<Computer> computer);
 
-    bool Step(Board &) override;
+    void Step(Board &board) override;
 
     bool Handle(int, Board const &) override;
 
-    IPlayer &player() override;
+    Player &player() override;
 
     void PrintHand() override;
 

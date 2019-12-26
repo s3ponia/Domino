@@ -2,27 +2,27 @@
 // Created by Linux Oid on 21/12/2019.
 //
 
-#include "../headers/IPlayer.h"
+#include "../headers/Player.h"
 #include "../headers/DominoBlock.h"
 #include "../headers/Board.h"
 #include <utility>
 
-IPlayer::IPlayer(std::vector<DominoBlock> hand) : hand_(std::move(hand)) {}
+Player::Player(std::vector<DominoBlock> hand) : hand_(std::move(hand)) {}
 
-void IPlayer::StoreDominoBlock(DominoBlock const &bone) {
+void Player::StoreDominoBlock(DominoBlock const &bone) {
     hand_.push_back(bone);
 }
 
-const IPlayer::HandType &IPlayer::hand() const noexcept {
+const Player::HandType &Player::hand() const noexcept {
     return hand_;
 }
 
-DominoBlock IPlayer::RemoveBlock(DominoBlock bone) {
+DominoBlock Player::RemoveBlock(DominoBlock bone) {
     hand_.erase(std::remove(hand_.begin(), hand_.end(), bone), hand_.end());
     return bone;
 }
 
-bool IPlayer::IsReady(const Board &board) const noexcept {
+bool Player::IsReady(const Board &board) const noexcept {
     if (board.empty())
         return true;
     auto start = board.front().first();

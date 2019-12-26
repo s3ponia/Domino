@@ -5,17 +5,17 @@
 #ifndef DOMINO_COMPUTER_H
 #define DOMINO_COMPUTER_H
 
-#include "IPlayer.h"
+#include "Player.h"
 #include "Board.h"
 #include <vector>
 
-class Computer : public IPlayer {
+class Computer : public Player {
 public:
     explicit Computer(std::vector<DominoBlock> start_hand);
 
     Computer() = default;
 
-    bool step(Board &) override;
+    void step(Board &board) override;
 
 private:
     DominoBlock BestBone(std::vector<DominoBlock> const &);

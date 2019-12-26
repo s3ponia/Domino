@@ -26,5 +26,8 @@ int main() {
         game.step();
         std::this_thread::sleep_for(100ms);
     }
+    game.GameOver();
+    wrefresh(window);
+    getchar();
     endwin();
 }

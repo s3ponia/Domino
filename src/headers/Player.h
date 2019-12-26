@@ -2,24 +2,29 @@
 // Created by Linux Oid on 06/12/2019.
 //
 
-#ifndef DOMINO_IPLAYER_H
-#define DOMINO_IPLAYER_H
+/**
+ * \class Player
+ * \brief
+ */
+
+#ifndef DOMINO_PLAYER_H
+#define DOMINO_PLAYER_H
 
 #include <vector>
 
 class Board;
 class DominoBlock;
 
-class IPlayer {
+class Player {
 public:
-    explicit IPlayer(std::vector<DominoBlock> hand = {});
+    explicit Player(std::vector<DominoBlock> hand = {});
 
     using HandType = std::vector<DominoBlock>;
 
     /**
      * @return может ли ходить игрок
      */
-    virtual bool step(Board &) = 0;
+    virtual void step(Board &board) = 0;
 
     void StoreDominoBlock(DominoBlock const &bone);
 
@@ -27,7 +32,7 @@ public:
 
     bool IsReady(const Board &board) const noexcept;
 
-    virtual ~IPlayer() = default;
+    virtual ~Player() = default;
 
 protected:
     DominoBlock RemoveBlock(DominoBlock bone);
@@ -36,4 +41,4 @@ protected:
 };
 
 
-#endif //DOMINO_IPLAYER_H
+#endif //DOMINO_PLAYER_H

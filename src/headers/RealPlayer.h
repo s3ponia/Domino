@@ -5,10 +5,10 @@
 #ifndef DOMINO_REALPLAYER_H
 #define DOMINO_REALPLAYER_H
 
-#include "IPlayer.h"
+#include "Player.h"
 #include "DominoBlock.h"
 
-class RealPlayer : public IPlayer {
+class RealPlayer : public Player {
 public:
     enum class StepMode {
         NONE, FRONT, BACK
@@ -18,7 +18,7 @@ public:
 
     RealPlayer() = default;
 
-    bool step(Board &) override;
+    void step(Board &board) override;
 
     void SetStep(StepMode const &, DominoBlock const &);
 

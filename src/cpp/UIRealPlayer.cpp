@@ -5,18 +5,19 @@
 #include "../headers/UIRealPlayer.h"
 #include <ncurses.h>
 
-bool UIRealPlayer::Step(Board &board) {
+void UIRealPlayer::Step(Board &board) {
     player_->step(board);
-    return true;
 }
 
 bool UIRealPlayer::Handle(int input, Board const &board) {
     bool ready = false;
     switch (input) {
+        case 'd':
         case KEY_RIGHT:
             if (chosen_bone_ < player_->hand().size() - 1)
                 ++chosen_bone_;
             break;
+        case 'a':
         case KEY_LEFT:
             if (chosen_bone_ > 0)
                 --chosen_bone_;
@@ -47,6 +48,6 @@ void UIRealPlayer::PrintHand() {
     model_.PrintHand(player_->hand(), chosen_bone_);
 }
 
-IPlayer &UIRealPlayer::player() {
+Player &UIRealPlayer::player() {
     return *player_;
 }

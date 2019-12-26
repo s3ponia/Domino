@@ -4,7 +4,7 @@
 
 #include "../headers/UIComputer.h"
 
-bool UIComputer::Step(Board &board) {
+void UIComputer::Step(Board &board) {
     return computer_->step(board);
 }
 
@@ -14,7 +14,7 @@ bool UIComputer::Handle(int, Board const &) {
     return true;
 }
 
-IPlayer &UIComputer::player() {
+Player &UIComputer::player() {
     return *computer_;
 }
 

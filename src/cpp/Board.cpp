@@ -13,45 +13,33 @@ DominoBlock Board::back() const {
     return board_.back();
 }
 
-std::deque<DominoBlock>::const_iterator Board::cbegin() const noexcept {
-    return board_.cbegin();
-}
-
-std::deque<DominoBlock>::const_iterator Board::cend() const noexcept {
-    return board_.cend();
-}
-
-bool Board::PushFront(const DominoBlock &block) {
+void Board::PushFront(const DominoBlock &block) {
     if (board_.empty()) {
         board_.push_back(block);
-        return true;
+        return;
     }
     auto front_value = board_.front().first();
     if (block.first() == front_value) {
         board_.push_front(SwapFields(block));
-        return true;
+        return;
     } else if (block.last() == front_value) {
         board_.push_front(block);
-        return true;
-    } else {
-        return false;
+        return;
     }
 }
 
-bool Board::PushBack(const DominoBlock &block) {
+void Board::PushBack(const DominoBlock &block) {
     if (board_.empty()) {
         board_.push_back(block);
-        return true;
+        return;
     }
     auto back_value = board_.back().last();
     if (block.last() == back_value) {
         board_.push_back(SwapFields(block));
-        return true;
+        return;
     } else if (block.first() == back_value) {
         board_.push_back(block);
-        return true;
-    } else {
-        return false;
+        return;
     }
 }
 

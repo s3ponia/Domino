@@ -3,6 +3,9 @@
 .idea/
 cmake-build-debug/
 
+#doxygen
+doxygen.conf
+
 # MacOS
 .DS_Store
 

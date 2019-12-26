@@ -4,7 +4,7 @@
 
 #include "../headers/UIModel.h"
 
-void UIModel::PrintHand(IPlayer::HandType const &hand, int chosen) {
+void UIModel::PrintHand(Player::HandType const &hand, int chosen) {
     decltype(hand.size()) width, height;
     getmaxyx(window_, height, width);
     auto hand_coor_x = width / 2ul - hand.size() * 3;
@@ -142,4 +142,8 @@ void UIModel::AttrOn(int attr) {
 
 void UIModel::AttrOff(int attr) {
     wattroff(window_, attr);
+}
+
+void UIModel::GetMaxYX(int &y, int &x) noexcept {
+    getmaxyx(window_, y, x);
 }

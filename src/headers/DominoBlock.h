@@ -2,6 +2,12 @@
 // Created by Linux Oid on 06/12/2019.
 //
 
+/**
+ * \class DominoBlock
+ * \brief Класс, представляющий кости
+ * \authors Heineken FAMS: Филипп Кутырев, Артем Смирнов, Николай Мамаевский, Вячеслав Шляга
+ */
+
 #ifndef DOMINO_DOMINOBLOCK_H
 #define DOMINO_DOMINOBLOCK_H
 
@@ -11,15 +17,18 @@
 
 class DominoBlock {
 public:
+    /*! \var using ValueType = uint8_t;
+     * \brief Определние типа для значений
+     */
     using ValueType = uint8_t;
 
     DominoBlock(ValueType, ValueType) noexcept;
 
     DominoBlock() = default;
 
-    ValueType first() const noexcept;
+    [[nodiscard]] ValueType first() const noexcept;
 
-    ValueType last() const noexcept;
+    [[nodiscard]] ValueType last() const noexcept;
 
     DominoBlock &operator=(DominoBlock const &rhs);
 

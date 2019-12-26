@@ -4,6 +4,11 @@
 
 #include "../headers/Game.h"
 #include "../headers/UIPlayer.h"
+#include "../headers/UIComputer.h"
+
+std::string GetName(const std::shared_ptr<UIPlayer> &player) {
+    return dynamic_cast<UIComputer *>(&*player) == nullptr ? "Player" : "Computer";
+}
 
 void Game::step() {
     bool step = false;
@@ -67,7 +72,49 @@ void Game::PrintInfo(UIPlayer const &player) {
         if (&player == &p)
             model_.AttrOn(COLOR_PAIR(CHOSEN_COLOR_PAIR));
         model_.Print(i + 1, 0,
-                     "Player " + std::to_string(i) + ":" + std::to_string(players_.at(i)->player().hand().size()));
+                     GetName(players_.at(i)) + ":" +
+                     std::to_string(players_.at(i)->player().hand().size()));
         model_.AttrOff(COLOR_PAIR(CHOSEN_COLOR_PAIR));
     }
+}
+
+
+void Game::GameOver() {
+    model_.Clear();
+    std::vector<std::pair<int, int>> scores;
+    for (decltype(players_.size()) i = 0; i < players_.size(); ++i) {
+        scores.emplace_back(GetScore(players_.at(i)), i);
+    }
+    std::sort(scores.begin(), scores.end());
+    int w, h;
+    model_.GetMaxYX(h, w);
+    h /= 2;
+    w /= 2;
+    w -= 7;
+    h -= scores.size();
+    model_.Print(h++, w,
+                 "WINNER " + GetName(players_.at(scores.at(0).second)));
+    model_.Print(h++, w,
+                 "Score " + GetName(players_.at(scores.at(0).second)) + " " + std::to_string(0));
+    for (decltype(scores.size()) i = 1; i < scores.size(); ++i) {
+        auto temp = scores.at(i);
+        model_.Print(h++, w, "Score " +
+                             GetName(players_.at(i)) + " " + std::to_string(temp.first));
+    }
+}
+
+
+int Game::GetScore(std::shared_ptr<UIPlayer> const &player) {
+    auto hand = player->player().hand();
+    int score = 0;
+    for (auto const &bone:hand) {
+        if (bone.first() == 6 && bone.last() == 6) {
+            score += 50;
+        } else if (bone.first() == 0 && bone.last() == 0) {
+            score += 25;
+        } else {
+            score += bone.last() + bone.first();
+        }
+    }
+    return score;
 }

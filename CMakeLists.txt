@@ -19,6 +19,6 @@ add_executable(Domino
         src/cpp/UIComputer.cpp
         src/cpp/UIModel.cpp
         src/cpp/GameBuilder.cpp
-        src/cpp/IPlayer.cpp
+        src/cpp/Player.cpp
         )
 target_link_libraries(Domino ${CURSES_LIBRARIES})
